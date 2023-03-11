@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include <math.h>
 int main() {
-    int r;
+    int num = 0;
     for ( int i = 1; i <= 10;i++){
-        r = pow(2,i+1);
-        // printf("%d", r );
+        num = (pow(i ,2))-1;
         if (i != 10){
-            printf("%d, ",r);
+            printf("%d, ",num);
         }
         else {
-            printf("%d\n",r);
+            printf("%d\n",num);
         }
     }
     return 0;

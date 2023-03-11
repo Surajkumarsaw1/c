@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <math.h>
 int main() {
-    float num = 0;
+    int num = 0;
     for ( int i = 1; i <= 10;i++){
-        num = pow(i+0.0,3.0)-1.0;
+        num = pow(i,3)-1;
         if (i != 10){
-            printf("%.1f,",num);
+            printf("%d, ",num);
         }
         else {
-            printf("%0.1f\n",num);
+            printf("%d\n",num);
         }
     }
     return 0;
