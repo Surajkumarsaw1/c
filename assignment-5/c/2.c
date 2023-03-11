@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 int main() {
     int t1=0, t2=1, tn, n=10;
     printf("Fibonacci series upto 10th term : \n");
