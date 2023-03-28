@@ -55,9 +55,9 @@ int main() {
         else {
             printf("Not a perfect number.\n");
         }
-
+        break;
     default:
-        
+        printf("Enter a valid option.\n");
         break;
     }
     return 0;

@@ -1,9 +1,9 @@
 /*
-Write a menu driven C program to accept a number from the user and check whether it is a Palindrome or a Perfect number.
-(a) Palindrome number: (A number is a Palindrome which when read in reverse order is same as in the right order)
-Example: 11, 101, 151 etc.
-(b) Perfect number: (A number is called Perfect if it is equal to the sum of its factors other than the number itself.)
-Example: 6 = 1 + 2 + 3
+Write a menu driven C program to accept a number from the user and check whether it is a Prime number or an Automorphic number.
+(a) Prime number: (A number is said to be prime, if it is only divisible by 1 and itself)
+Example: 3,5,7,11
+(b) Automorphic number: (Automorphic number is the number which is contained in the last digit(s) of its square.)
+Example: 25 is an Automorphic number as its square is 625 and 25 is present as the last two digits.
 */
 
 #include <stdio.h>
@@ -47,11 +47,14 @@ int main() {
         sq = num*num;
 
         while( sq/tens != 0){
+            // printf("sq = %d, tens = %d\t",sq,tens);
+            // printf("sq/tens = %d\t",sq/tens );
+            // printf("sq%%tens = %d\n",sq%tens);
             if (sq%tens == num){
                 automorphic = 1;
                 break;
             }
-            tens += 10;
+            tens *= 10;
         }
 
         if (automorphic){
