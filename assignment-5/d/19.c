@@ -39,8 +39,8 @@ int main() {
     
     case 2:
         float sum = 0;
-        for (float i =1; i<=n; i+=1){
-            sum = sum + ((i*2)-1)/(i*2);
+        for (int i = 1; i<=n; i++){
+            sum = sum + (((float) i*2 )-1)/ (float) ( i*2 );
         }
         printf("Sum of above series upto %d terms is %f\n",n,sum);
 
