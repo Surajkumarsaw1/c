@@ -4,12 +4,18 @@
 
 int main() {
     int arr[20], sodd =0 , seven=0, i;
+
+    // takes 20 input
     for ( i = 0; i < 20;i++){
         scanf("%d", &arr[i]);
     }
+
+    // comparision using ternary operator for even or odd
     for ( i = 0; i < 20; i++){
         arr[i]%2 == 0 ? (seven += arr[i]) : (sodd += arr[i]);
     }
+
+    // printing result
     printf("Sum of odd numbers : %d\n",sodd);
     printf("Sum of even numbers : %d\n",seven);
     return 0;
