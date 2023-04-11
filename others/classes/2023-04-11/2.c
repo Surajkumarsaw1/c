@@ -5,14 +5,28 @@
 int main() {
     int arr[20], sodd =0 , seven=0, i;
 
+    printf("Enter 20 numbers : ");
+
     // takes 20 input
     for ( i = 0; i < 20;i++){
         scanf("%d", &arr[i]);
     }
 
-    // comparision using ternary operator for even or odd
+    // comparision for even or odd
     for ( i = 0; i < 20; i++){
+        // comparision using ternary operator for even or odd
         arr[i]%2 == 0 ? (seven += arr[i]) : (sodd += arr[i]);
+
+
+        // comparision using if else operator for even or odd
+        // if ( arr[i] == 0){
+        //     // if even 
+        //     seven += arr[i];
+        // }
+        // else{
+        //     // if odd
+        //     sodd += arr[i];
+        // }
     }
 
     // printing result
