@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 int main() {
-    int arr[20], sum =0, i, temp, count;
+    int arr[10], sum =0, i, temp, count;
 
     printf("Enter 10 numbers : ");
 
