@@ -6,7 +6,7 @@ int main() {
     int n = 16;
     int bin[n], num, temp, i;
 
-    printf("Enter a number :");
+    printf("Enter a number : ");
     scanf("%d",&num);
 
     for (int k = 0; k < n; k++){
@@ -23,14 +23,12 @@ int main() {
         
     }while (temp != 0);
 
+    // reversing array
     for (i = 0; i < n/2;i++){
         bin[i] = bin[i] + bin[(n-1)-i]; 
         bin[(n-1)-i] = bin[i] - bin[(n-1)-i];
         bin[i] = bin[i] - bin[(n-1)-i]; 
     }
-
-
-    printf("\n");
 
     // Output
     printf("%d = ",num);
@@ -41,3 +39,8 @@ int main() {
 
     return 0;
 }
+
+/* Output
+Enter a number : 13
+13 = 0000000000001101
+*/

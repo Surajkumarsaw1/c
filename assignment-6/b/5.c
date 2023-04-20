@@ -31,3 +31,10 @@ int main() {
 
     return 0;
 }
+
+/* Output
+Enter the size of array : 6
+Enter 6 numbers : 1 2 3 4 4 2
+Enter a number to find it occurrence : 4
+Number of occurrence : 2
+*/
