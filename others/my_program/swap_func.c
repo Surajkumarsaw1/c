@@ -2,6 +2,7 @@
 
 void swap(float* a, float* b);
 float* swap2(float a, float b);
+float * swap2(float a, float b);
 
 int main(){
     float num1, num2;
