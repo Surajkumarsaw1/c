@@ -19,7 +19,7 @@ int main(){
 }
 
 void swap(float* pointerA, float* pointerB){
-    printf("%p, %p\n", pointerA, pointerB);
+    // printf("%p, %p\n", pointerA, pointerB);
     float c;
     c = *pointerA; // *a gives value in varible a; c = a
     *pointerA = *pointerB;
