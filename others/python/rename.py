@@ -63,8 +63,17 @@ def renumbering(path="."):
 
     for i in range(0,len(f2)):
         # continue
-        os.system(f"git mv {f2[i][0]} {f2[i][1]}")
-        # os.system(f"mv {f2[i][0]} {f2[i][1]}")
+        try:
+            try:
+                os.system(f"git mv {f2[i][0]} {f2[i][1]}")
+            except Exception as e:
+                print(str(e))
+                try:
+                    os.system(f"mv {f2[i][0]} {f2[i][1]}")
+                except Exception as e:
+                    print(str(e))
+        except Exception as e:
+            print(str(e))
 
     return [path,f2]
 
