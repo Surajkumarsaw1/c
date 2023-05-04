@@ -7,7 +7,7 @@ int main() {
 
     printf("Enter a string : ");
     scanf("%s", s1);
-    printf("%s\n", s1);
+    // printf("%s\n", s1);
 
     int len = 0, arrlen;
     while (s1[len] != '\0'){
@@ -27,3 +27,8 @@ int main() {
 
     return 0;
 }
+
+/* Output
+Enter a string : Reversed
+Reversed string : desreveR
+*/

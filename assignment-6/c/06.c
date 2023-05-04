@@ -26,3 +26,7 @@ int main()
     printf("%s\n", arr);
     return 0;
 }
+/* Output
+Enter a string : Mixed_case
+mixed_case
+*/

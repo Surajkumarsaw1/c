@@ -37,3 +37,9 @@ int main()
     printf("digits : %d\n",digit);
     printf("Special : %d\n", special);
 }
+/*
+Enter a string : myPassword@123
+Alphabets : 10
+digits : 3
+Special : 1
+*/

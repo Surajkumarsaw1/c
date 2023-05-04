@@ -45,4 +45,12 @@ int main()
 
     printf("vowels : %d\n", v);
     printf("consonants : %d\n", c);
+
+    return 0;
 }
+
+/*
+Enter a string : Education
+vowels : 5
+consonants : 4
+*/
