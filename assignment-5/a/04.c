@@ -1,3 +1,7 @@
+/*
+4, 8, 16, 32, ………….
+*/
+
 #include <stdio.h>
 #include <math.h>
 int main() {
@@ -14,3 +18,7 @@ int main() {
     }
     return 0;
 }
+
+/* Output
+4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048
+*/

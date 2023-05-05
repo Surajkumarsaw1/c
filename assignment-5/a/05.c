@@ -1,3 +1,7 @@
+/*
+1.5, 3.0, 4.5, 6.0, …………..
+*/
+
 #include <stdio.h>
 #include <math.h>
 int main() {
@@ -8,8 +12,12 @@ int main() {
             printf("%.1f, ",r);
         }
         else {
-            printf("%0.1f",r);
+            printf("%0.1f\n",r);
         }
     }
     return 0;
 }
+
+/* Output
+1.5, 3.0, 4.5, 6.0, 7.5, 9.0, 10.5, 12.0, 13.5, 15.0
+*/
