@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "random": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "stdio.h": "c"
     },
     "cmake.configureOnOpen": true
 }
