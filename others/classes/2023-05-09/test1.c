@@ -2,26 +2,25 @@
 
 #include <stdio.h>
 
-static int n = 4;
+static int n = 20;
 
 int is_prime(int);
-int prime_sum(int arr[], int size);
+int prime_index_sum(int arr[], int size);
 
 int main()
 {
     int nums[n], sum = 0;
-    ;
     printf("Enter %d numbers : ", n);
     for (int i = 0; i < n; i++)
     {
         scanf("%d", &nums[i]);
     }
 
-    printf("Sum : %d\n", prime_sum(nums, n));
+    printf("Sum : %d\n", prime_index_sum(nums, n));
     return 0;
 }
 
-int prime_sum(int arr[], int size)
+int prime_index_sum(int arr[], int size)
 {
     int i, sum = 0;
 
@@ -29,7 +28,7 @@ int prime_sum(int arr[], int size)
     {
         if (is_prime(arr[i]))
         {
-            sum += arr[i];
+            sum += i;
         }
     }
 
@@ -39,6 +38,10 @@ int prime_sum(int arr[], int size)
 int is_prime(int num)
 {
     int prime = 1;
+
+    if (num < 2){
+        return 0;
+    }
 
     for (int i = 2; i < (num / 2) + 1; i++)
     {
