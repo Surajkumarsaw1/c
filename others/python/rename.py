@@ -12,18 +12,6 @@ files = []
 
 dirlist = ['.']
 
-# while len(dirlist) > 0:
-#     for (dirpath, dirnames, filenames) in os.walk(dirlist.pop()):
-#         dirlist.extend(dirnames)
-#         files.extend(map(lambda n: os.path.join(*n), zip([dirpath] * len(filenames), filenames)))
-
-# print(files)
-# f = files
-# for base, dirs, files in walk(mypath):
-#     f.extend(files)
-#     break
-# print(f)
-
 def renumbering(path="."):
     print(path)
     f = []
@@ -87,11 +75,13 @@ def dirlster(path="."):
     # print(path)
     abspath = os.path.abspath(path)
     # print(abspath)
-    
+    ignore_dir = [".git", "venv"]
+
     for base,dirnames,filenames in os.walk(abspath):
         # print(dirnames)
-        if ".git" in dirnames:
-            dirnames.remove(".git")
+        for d in ignore_dir:
+            if d in dirnames:
+                dirnames.remove(d)
         # print(filenames)
         for dir in dirnames:
 

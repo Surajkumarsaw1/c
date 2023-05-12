@@ -1,30 +1,14 @@
 from os import walk
 import glob
 import os
-
-
-
+import time 
 f = []
 f2 = []
 mypath = os.getcwd()
 
-import os
-
 files = []
 
 dirlist = ['.']
-
-# while len(dirlist) > 0:
-#     for (dirpath, dirnames, filenames) in os.walk(dirlist.pop()):
-#         dirlist.extend(dirnames)
-#         files.extend(map(lambda n: os.path.join(*n), zip([dirpath] * len(filenames), filenames)))
-
-# print(files)
-# f = files
-# for base, dirs, files in walk(mypath):
-#     f.extend(files)
-#     break
-# print(f)
 
 def renumbering(path="."):
     print(path)
@@ -84,18 +68,12 @@ import openai
 import json
 import pandas as pd
 
-# f = open("config.json")
-# json_dic = json.load(f)
-# f.close()   
-
 with open("config.json", 'r') as f:
     config = json.load(f)
 
 
 api_key = config["openai-api-key"]
-
 openai.api_key = api_key
-
 conversation=[]
 
 def chatGPTResponse(conversation):
@@ -128,32 +106,71 @@ def getResponse(prompt):
             return getResponse(prompt)
         except Exception as ee:
             print(str(ee))
-            print("Wait for a minite retrying")
+            print("Wait for a minite retrying....")
+            time.sleep(60)
             return getResponse(prompt)
         
-def minimizer(filename):
-    if os.path.exists(filename):
-        with open(str(filename), 'r') as f:
-            data = f.read()
+def minimizer(path, save=False):
+    print(path)
+    f = []
+    f2 = []
 
-        prompt = f"minimize the given code \"{data}\""
-        response=getResponse(prompt)
-        print(response)
-    else:
-        print("File does not exists.")
+    if (os.path.exists(path) == True):
+        if os.path.isdir(path):
+            path = os.path.join(path, "*.c")
+            for file in glob.glob(path, recursive = True):
+                f.append(file)
+            # print(f)
+        else:
+            f.append(path)
+    
+    print(f)
+
+    num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    for i in range(0, len(f)):
+        filepath = f[i]
+        filename = os.path.basename(filepath)
+        base = filepath.rstrip(filename)
+        print(filename)
+        ext = filename.split(".")[-1]
+        if ext == "c":
+            print(filename[0],filename[1])
+            if ((filename[0] in num) and ( filename[1] in num)):
+                file = os.path.join(base,'0'+filename[:-3]+"-min.c")
+                f2.append((f[i], file))
+        
+    print(f2)
+
+    for i in range(0,len(f2)):
+        filename = f2[i][0]
+        if os.path.exists(filename):
+            with open(str(filename), 'r') as f:
+                data = f.read()
+
+            prompt = f"minimize the given code and result should only give code : \"{data}\""
+            response=getResponse(prompt)
+            print(response)
+            if save:
+                savefile(data=minimizer(filename), name= f2[i][1])
+            return str(response)
+        else:
+            print("File does not exists.")
+            return str(f"{filename} does not exists.")
 
 
 def dirlster(path="."):
     dirlst = []
     # print(os.listdir())
-    # print(path)
+    print("dirlster :",path)
     abspath = os.path.abspath(path)
     # print(abspath)
-    
+    ignore_dir = [".git", "venv"]
+
     for base,dirnames,filenames in os.walk(abspath):
         # print(dirnames)
-        if ".git" in dirnames:
-            dirnames.remove(".git")
+        for d in ignore_dir:
+            if d in dirnames:
+                dirnames.remove(d)
         # print(filenames)
         for dir in dirnames:
 
@@ -192,13 +209,38 @@ def filelster(path='.'):
 
     return files
 
+
+
+def savefile(data="", name=""):
+    if os.path.exists(name):
+        if os.path.isfile(name):
+            yn = input("You are going to overrite this file [y/n]")
+            if yn == "y":
+                with open(name, "w") as f:
+                    f.write(data)
+
+        else:
+            print(f"Path not a file : {name}")
+            print("Creating new file : ")
+            with open(name, "a") as f:
+                f.write(data)
+    else:
+        print(f"No path {name}")
+        print("Creating new file : ")
+        with open(name, "a") as f:
+            f.write(data)
+    
+
+
+
 # print(dirlster())
 # print(filelster(dirlster()))
 
+# testname = "rename.py"
+# savefile(data=minimizer(testname), name= f"min-{testname}")
 
-# if __name__ == "__main__":
-#     for file in filelster(dirlster()):
-#         renumbering(file)
-#         print()
-
-minimizer("rename.py")
+if __name__ == "__main__":
+    for file in filelster(dirlster()):
+        # renumbering(file)
+        minimizer(file)
+        print()

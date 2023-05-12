@@ -4,5 +4,6 @@
         "algorithm": "c",
         "stdio.h": "c"
     },
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "python.formatting.provider": "yapf"
 }

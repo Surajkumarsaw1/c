@@ -36,7 +36,7 @@ int count(int num)
     int count = 0, temp, numc;
     numc = num;
 
-    while (numc % 10 != 0)
+    while (numc != 0)
     {
         count += 1;
         numc /= 10;
