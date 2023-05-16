@@ -20,11 +20,13 @@ int main()
 
     for (i = 0; i < n; i++)
     {
-        for (i = 2; i < arr[i] / 2; i++)
+        for (j = 0; j < n-1; j++)
         {
-            if (arr[i] % i == 0)
-            {
-                return 0;
+            if ((arr[j] > 0) && (arr[j+1] < 0))
+            {   
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
             }
         }
     }
