@@ -2,6 +2,13 @@ from os import walk
 import glob
 import os
 import time 
+import openai 
+import json
+import pandas as pd
+
+with open("others/python/config.json", 'r') as f:
+    config = json.load(f)
+
 f = []
 f2 = []
 mypath = os.getcwd()
@@ -64,12 +71,7 @@ def renumbering(path="."):
     return [path,f2]
 
 
-import openai 
-import json
-import pandas as pd
 
-with open("config.json", 'r') as f:
-    config = json.load(f)
 
 
 api_key = config["openai-api-key"]
@@ -89,8 +91,12 @@ def chatGPTResponse(conversation):
                         'content':response.choices[0].message.content})
     return conversation
 
-def getResponse(prompt):
-    
+def getResponse(prompt, error=0):
+    if error:
+        print("error",error)
+    if error > 3:
+        quit()
+
     global conversation
     
     try:
@@ -98,33 +104,47 @@ def getResponse(prompt):
         conversation=chatGPTResponse(conversation)
 
         return conversation[-1]['content'].strip()
+    
+    except openai.error.RateLimitError as e:
+        print(f"\nRate limit exceeded: {e}\n")
+        print("Please add a payment method to your account to increase your rate limit.")
+        print("Visit https://platform.openai.com/account/billing to add a payment method.")
+        # Handle the exception here, such as sleeping for a certain amount of time before trying again or exiting the program
+        print("Wait for a 20 seconds retrying....")
+        time.sleep(20)
+
     except Exception as e:
         print(str(e))
         try:
-            conversation.pop(0)
-            conversation.pop(-1)
-            return getResponse(prompt)
+            # conversation.pop(0)
+            # conversation.pop(-1)
+            conversation = []
+            return getResponse(prompt, error+1)
         except Exception as ee:
             print(str(ee))
             print("Wait for a minite retrying....")
             time.sleep(60)
-            return getResponse(prompt)
+            return getResponse(prompt, error+1)
         
 def minimizer(path, save=False):
     print(path)
-    f = []
+    # f = []
+    f = set()
     f2 = []
 
     if (os.path.exists(path) == True):
         if os.path.isdir(path):
             path = os.path.join(path, "*.c")
             for file in glob.glob(path, recursive = True):
-                f.append(file)
+                # f.append(file)
+                f.add(file)
             # print(f)
         else:
-            f.append(path)
+            # f.append(path)
+            f.add(path)
     
     print(f)
+    f = list(f)
 
     num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     for i in range(0, len(f)):
@@ -132,14 +152,25 @@ def minimizer(path, save=False):
         filename = os.path.basename(filepath)
         base = filepath.rstrip(filename)
         print(filename)
+
+        if len(str(filename)) >= 6:
+            print("\n",type(filename[-6:]))
+            print(filename[-6:])
+            if (filename[-6:] == "-min.c"):
+                continue
+
         ext = filename.split(".")[-1]
         if ext == "c":
             print(filename[0],filename[1])
             if ((filename[0] in num) and ( filename[1] in num)):
-                file = os.path.join(base,'0'+filename[:-3]+"-min.c")
-                f2.append((f[i], file))
+                file = os.path.join(base,filename[:-2]+"-min.c")
+                if not os.path.isfile(file):
+                    f2.append((f[i], file))
+        else:
+            print(f"\nThis {filename} is note a c file.\n")
+            pass
         
-    print(f2)
+    print("f2:",f2)
 
     for i in range(0,len(f2)):
         filename = f2[i][0]
@@ -147,7 +178,7 @@ def minimizer(path, save=False):
             with open(str(filename), 'r') as f:
                 data = f.read()
 
-            prompt = f"minimize the given code and result should only give code : \"{data}\""
+            prompt = f"minimize the given code, code should be human readable and result should only give code with appropriate output commented at end of code. : \"{data}\""
             response=getResponse(prompt)
             print(response)
             if save:
@@ -242,5 +273,6 @@ def savefile(data="", name=""):
 if __name__ == "__main__":
     for file in filelster(dirlster()):
         # renumbering(file)
-        minimizer(file)
+        minimizer(file, save=True)
         print()
+        
