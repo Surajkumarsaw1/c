@@ -1,29 +1,38 @@
 # Notes
 ## Print a string
-    puts()
-
+```c
+puts()
+```
 ## to take input of string
-    gets()
-
-    & is not required here
-
+```c
+gets()
+// & is not required here
+```
 ## string lenght
-    strlen()
-
+```c
+strlen()
+```
 ## string contactination
-    strcat()
-
+```c
+strcat()
+```
 ## string copy
-    strcpy()
-
+```c
+strcpy()
+```
 ## string compare
-    strcmp()
-
+```c
+strcmp()
+```
 ## convert string to lower case
-    strlwr()
-    
+```c
+strlwr()
+``` 
 ## convert string to upper case
-    strupr()
-
+```c
+strupr()
+```
 ## string reverse
-    strrev()
+```c
+strrev()
+```
