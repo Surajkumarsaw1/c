@@ -4,12 +4,12 @@
     - Pre Mid 15
     - Post Mid 15
 
-- Test 40
-    - Pre Mid 20
+- Test 30
+    - Pre Mid 15
         - Quiz 10
-        - Test 10
-    - Post Mid 20
-        - Quiz 10
+        - Test 5
+    - Post Mid 15
+        - Quiz 5
         - Test 10
 
 ## Sessinal Exam 40 Marks
