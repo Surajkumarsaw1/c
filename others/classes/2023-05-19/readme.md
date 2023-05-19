@@ -19,3 +19,9 @@
     - 23/05/2023
     - 26/05/2023 Quiz all
     - introduction -> Pointers
+
+# Notes 2023/05/19
+Function assignment 1 to be done again using concept:
+- Pointer to funtion
+- Pointer to Structure
+- Void Pointer
