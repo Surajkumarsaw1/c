@@ -24,21 +24,21 @@ int main() {
     char str[199];
 
     
-    int i = 0;
+    int countforstr = 0;
     int count = 0;
     while (s1[count] != '\0'){
-        str[i] = s1[count];
+        str[countforstr] = s1[count];
         count++;
-        i++;
+        countforstr++;
     }
     count = 0;
     while (s2[count] != '\0'){
-        str[i] = s2[count];
+        str[countforstr] = s2[count];
         count++;
-        i++;
+        countforstr++;
     }
 
-    str[i+1] = '\0';
+    str[countforstr+1] = '\0';
 
 
     printf("%s\n", str);
